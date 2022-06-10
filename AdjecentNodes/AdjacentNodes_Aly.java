@@ -6,13 +6,13 @@
 
 import java.util.*;
 
-public class AdjacentNodes {
+public class AdjacentNodes_Aly {
 	static Scanner in = new Scanner(System.in);
 	
 	private int vertices, matrix[][];
 	
 	// constructor
-	public AdjacentNodes(int vertices) {
+	public AdjacentNodes_Aly(int vertices) {
 		this.vertices = vertices;
 		matrix = new int[vertices][vertices];
 	}	
@@ -40,7 +40,7 @@ public class AdjacentNodes {
 	public static void main(String[] args) {
 		System.out.print("Enter the number of nodes: "); int numVer = validate(in.nextInt());
 		System.out.print("Enter the number of edges: "); int numEdg = in.nextInt();
-		AdjacentNodes graph = new AdjacentNodes(numVer);
+		AdjacentNodes_Aly graph = new AdjacentNodes_Aly(numVer);
 		
 		for(int i = 0; i < numEdg; i++) {
 			System.out.print("Enter the source vertex: "); int start = in.nextInt();
