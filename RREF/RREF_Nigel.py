@@ -1,17 +1,13 @@
-
-from tkinter import N
-
-
 class RREF_Matrix():
     matrix = []
     def createMatrix(self, row, column):
         #self.matrix = [[0 for x in range(row)] for y in range(column)] 
-        self.matrix = [[8,2,3], [4,5,6], [7, 8, 9]]
+        self.matrix = [[1,2,3], [4,5,6], [7, 8, 9]]
 
     def printer(self):
         for n in self.matrix:
             for m in n:
-                print(m, end = " ")
+                print(m, end = "\t")
             print()
     def ValueLocation(self, i, j, value):
         if(value != ''):
@@ -24,31 +20,36 @@ class RREF_Matrix():
         return self.matrix
 
 
-    def rref(self, rows, columns, diag, rowbase):
-        if rows < len(self.matrix) and columns < len(self.matrix[rows]):
-            if rows == diag and columns == diag:
-                sub = self.matrix[rows][columns] - 1 
-                print(f"R{rows + 1} - {sub}")
-                for columns in range(len(self.matrix[rows])):
-                    self.matrix[rows][columns] = self.matrix[rows][columns] - sub
-                    diag = diag + 1
-            else:
-                sub = self.matrix[rows - rowbase][columns] * self.matrix[rows][columns]
-                print(f"R{rows + 1} - {sub}")
-                for columns in range(len(self.matrix[rows])):
-                    self.matrix[rows][columns] = self.matrix[rows][columns] - sub
-                rowbase = rowbase + 1
-            
-            if rows < len(self.matrix) and columns < len(self.matrix[rows]):
-                rows = rows + 1
-                columns = 0
-            elif rows == len(self.matrix) - 1 and columns < len(self.matrix[rows]):
-                columns = columns + 1
-                rows = 0
+    def rref(self):
+        if not self.matrix: return
+        lead = 0
+        row_Count = len(self.matrix)
+        col_Count = len(self.matrix[0])
+        for r in range(row_Count):
+            if col_Count <= lead:
+                return
+            i = r
+            while self.matrix[i][lead] == 0:
+                i = i + 1
+                if i == row_Count:
+                    i = r
+                    lead = lead + 1
+                    if col_Count == lead:
+                        return
+            if i != r:
+                self.matrix[i] = self.matrix[r]
+                self.matrix[r] = self.matrix[i]
+            divisor = self.matrix[r][lead]
+            for self.matrixdivr in self.matrix[r]:
+                self.matrix[r] = self.matrixdivr / divisor
+            for j in range(row_Count):
+                if j != r:
+                    subtrahend = float(self.matrix[i][lead])
+                    for k in range(col_Count):
+                        self.matrix[j][k] = self.matrix[j][k] - (subtrahend * matrix[r][k])
+            lead += 1
             matrix.printer()
-            matrix.rref(rows, columns, diag, rowbase)
-        else: 
-            return
+            print()
 rows = int(input("Number of rows: "))
 columns = int(input("Number of Columns: "))
 diag = 0
@@ -67,4 +68,5 @@ matrix.printer()
 #        matrix.ValueLocation(m, n, value)
 #        matrix.printer()
 print("Matrix RREF")
-matrix.rref(rows, columns, diag, rowbase)
+matrix.rref()
+matrix.printer()
