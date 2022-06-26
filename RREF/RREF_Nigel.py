@@ -44,9 +44,9 @@ class RREF_Matrix():
                 self.matrix[r] = self.matrixdivr / divisor
             for j in range(row_Count):
                 if j != r:
-                    subtrahend = float(self.matrix[i][lead])
+                    subtrahend = self.matrix[j][lead]
                     for k in range(col_Count):
-                        self.matrix[j][k] = self.matrix[j][k] - (subtrahend * matrix[r][k])
+                        self.matrix[j][k] = self.matrix[j][k] - (subtrahend * self.matrix[r][k])
             lead += 1
             matrix.printer()
             print()
