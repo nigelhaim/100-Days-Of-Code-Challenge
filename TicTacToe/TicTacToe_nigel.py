@@ -85,9 +85,9 @@ for ingame in range(9):
 
     if status == 'X' or status == 'O':
         if status == 'X':
-            print("Player 1 Wins!")
+            print(player_Uno, " Wins!")
         elif status == 'O':
-            print("Player 2 Wins!")
+            print(player_Dos, " Wins!")
         elif status == 'None':
             print("Tie")
         print()
@@ -95,7 +95,6 @@ for ingame in range(9):
         break
 
 print()
-game.printer(arr)
 if game.WinnerDecleration(arr) == "None":
     print()
     print("Match Result: Tie")
